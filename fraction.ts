@@ -2,9 +2,13 @@ import { roundTo } from "./utils.ts";
 
 export class Fraction {
   constructor(
-    private numerator: number,
-    private denominator: number,
-  ) {}
+    public numerator: number,
+    public denominator: number,
+  ) {
+    if (denominator === 0) {
+      throw new Error("denominator cannot be 0");
+    }
+  }
 
   public add(other: Fraction) {
     const newNumerator =
