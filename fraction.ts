@@ -1,4 +1,5 @@
 import { roundTo } from "./utils.ts";
+import { gcdBruteForce } from "./gcd.ts";
 
 export class Fraction {
   constructor(
@@ -60,4 +61,10 @@ export class Fraction {
     }
     return new Fraction(numerator, denominator);
   }
+
+  cancel(): void {
+  const gcd = gcdBruteForce(this.numerator, this.denominator);
+  this.numerator = this.numerator / gcd;
+  this.denominator = this.denominator / gcd;
+}
 }

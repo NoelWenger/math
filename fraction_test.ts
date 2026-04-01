@@ -104,3 +104,14 @@ Deno.test("parse throws when denominator is 0", () => {
     Fraction.parse("3/0");
   });
 });
+
+Deno.test("cancel keeps 1/1 as 1/1", () => {
+  // Arrange
+  const fraction = new Fraction(1, 1);
+
+  // Act
+  fraction.cancel();
+
+  // Assert
+  assertEquals(fraction.toString(), "1/1");
+});
