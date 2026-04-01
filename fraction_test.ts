@@ -115,3 +115,11 @@ Deno.test("cancel keeps 1/1 as 1/1", () => {
   // Assert
   assertEquals(fraction.toString(), "1/1");
 });
+
+Deno.test("cancel turns 2/4 into 1/2", () => {
+  // Arrange
+  const fraction = new Fraction(2, 4);
+
+  // Act
+  fraction.cancel();
+});
