@@ -123,3 +123,37 @@ Deno.test("cancel turns 2/4 into 1/2", () => {
   // Act
   fraction.cancel();
 });
+
+Deno.test("Fraction(2, 4) is automatically reduced to 1/2", () => {
+  // Arrange
+  const fraction = new Fraction(2, 4);
+
+  // Act
+  const result = fraction.toString();
+
+  // Assert
+  assertEquals(result, "1/2");
+});
+
+Deno.test("parse('2/4') returns 1/2", () => {
+  // Arrange
+  const input = "2/4";
+
+  // Act
+  const result = Fraction.parse(input);
+
+  // Assert
+  assertEquals(result.toString(), "1/2");
+});
+
+Deno.test("1/2 + 1/2 = 1/1", () => {
+  // Arrange
+  const left = new Fraction(1, 2);
+  const right = new Fraction(1, 2);
+
+  // Act
+  left.add(right);
+
+  // Assert
+  assertEquals(left.toString(), "1/1");
+});

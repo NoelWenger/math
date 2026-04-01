@@ -9,6 +9,8 @@ export class Fraction {
     if (denominator === 0) {
       throw new Error("denominator cannot be 0");
     }
+
+    this.cancel();
   }
 
   public add(other: Fraction) {
@@ -17,6 +19,7 @@ export class Fraction {
     const newDenominator = this.denominator * other.denominator;
     this.numerator = newNumerator;
     this.denominator = newDenominator;
+    this.cancel();
   }
 
   public subtract(other: Fraction) {
@@ -25,6 +28,7 @@ export class Fraction {
     const newDenominator = this.denominator * other.denominator;
     this.numerator = newNumerator;
     this.denominator = newDenominator;
+    this.cancel();
   }
 
   public multiply(other: Fraction) {
@@ -32,6 +36,7 @@ export class Fraction {
     const newDenominator = this.denominator * other.denominator;
     this.numerator = newNumerator;
     this.denominator = newDenominator;
+    this.cancel();
   }
 
   public divide(other: Fraction) {
@@ -39,6 +44,7 @@ export class Fraction {
     const newDenominator = this.denominator * other.numerator;
     this.numerator = newNumerator;
     this.denominator = newDenominator;
+    this.cancel();
   }
 
   public toFloat(precision: number): number {
@@ -62,9 +68,9 @@ export class Fraction {
     return new Fraction(numerator, denominator);
   }
 
-  cancel(): void {
-  const gcd = gcdEuclid(this.numerator, this.denominator);
-  this.numerator = this.numerator / gcd;
-  this.denominator = this.denominator / gcd;
-}
+  public cancel(): void {
+    const gcd = gcdEuclid(this.numerator, this.denominator);
+    this.numerator = this.numerator / gcd;
+    this.denominator = this.denominator / gcd;
+  }
 }
