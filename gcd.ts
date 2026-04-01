@@ -9,3 +9,15 @@ export function gcdBruteForce(a: number, b: number): number {
 
   return 1;
 }
+
+export function gcdEuclid(a: number, b: number): number {
+  if (a === b) {
+    return a;
+  }
+
+  if (a > b) {
+    return gcdEuclid(a - b, b);
+  }
+
+  return gcdEuclid(a, b - a);
+}
